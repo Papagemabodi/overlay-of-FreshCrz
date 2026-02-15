@@ -127,7 +127,7 @@ BDEPEND="sys-devel/gcc media-libs/libsdl2 media-libs/sdl2-image"
 	# this package FHS 2.2-compliant.  For more information, see
 	#   https://wiki.linuxfoundation.org/lsb/fhs
 #}
-
+inherit desktop xdg-utils
 # The following src_compile function is implemented as default by portage, so
 # you only need to call it, if you need different behaviour.
 src_compile() {
@@ -140,6 +140,8 @@ inherit wrapper
 
 src_install() {
 	dodoc README.md LICENSE
+
+	make_desktop_entry "happy-miner" "Happy Miner" "" "Game;Application"
 	
 	insinto /opt/happy-miner
 	doins -r "${S}"/*
@@ -149,4 +151,12 @@ src_install() {
 	fperms +x /opt/happy-miner/happy-miner
 
 	make_wrapper happy-miner ./happy-miner /opt/happy-miner
+}
+
+pkg_postinst() {
+	xdg_desktop_database_update
+}
+
+pkg_postrm() {
+	xdg_desktop_database_update
 }
