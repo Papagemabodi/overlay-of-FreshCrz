@@ -139,8 +139,12 @@ src_compile() {
 inherit wrapper
 
 src_install() {
+	dodoc README.md LICENSE
+	
 	insinto /opt/happy-miner
 	doins -r "${S}"/*
+
+	rm -rf "${ED}"/opt/happy-miner/{README*,LICENSE*,*.cpp} || die
 
 	fperms +x /opt/happy-miner/happy-miner
 
