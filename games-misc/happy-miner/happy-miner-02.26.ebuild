@@ -13,7 +13,7 @@
 # If an eclass doesn't support latest EAPI, use the previous EAPI instead.
 EAPI=8
 
-S="${WORKDIR}/curly-doodle"
+S="${WORKDIR}/curly-doodle-${PV}"
 # inherit lists eclasses to inherit functions from. For example, an ebuild
 # that needs the eautoreconf function from autotools.eclass won't work
 # without the following line:
@@ -30,13 +30,13 @@ HOMEPAGE="https://github.com/Vlad50-50/curly-doodle"
 
 # Point to any required sources; these will be automatically downloaded by
 # Portage.
-SRC_URI="https://github.com/Vlad50-50/curly-doodle/raw/refs/heads/main/curly-doodle-${PV}.tar.gz -> happy-miner-${PV}.tar.gz"
+SRC_URI="https://github.com/Vlad50-50/curly-doodle/archive/refs/tags/${PV}.tar.gz -> happy-miner-${PV}.tar.gz"
 
 # Source directory; the dir where the sources can be found (automatically
 # unpacked) inside ${WORKDIR}.  The default value for S is ${WORKDIR}/${P}
 # If you don't need to change it, leave the S= line out of the ebuild
 # to keep it tidy.
-#S="${WORKDIR}/${P}"
+#S="${WORKDIR}/${PV}"
 
 
 # License of the package.  This must match the name of file(s) in the
@@ -139,6 +139,7 @@ src_compile() {
 inherit wrapper
 
 src_install() {
+  tar -xJf "${S}"/assets.tar.xz
 	dodoc README.md LICENSE
 
 	make_desktop_entry "happy-miner" "Happy Miner" "" "Game;Application"
@@ -146,7 +147,7 @@ src_install() {
 	insinto /opt/happy-miner
 	doins -r "${S}"/*
 
-	rm -rf "${ED}"/opt/happy-miner/{README*,LICENSE*,*.cpp} || die
+	rm -rf "${ED}"/opt/happy-miner/{README*,LICENSE*,*.cpp,*.tar.xz} || die
 
 	fperms +x /opt/happy-miner/happy-miner
 
