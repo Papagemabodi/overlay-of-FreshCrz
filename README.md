@@ -4,7 +4,7 @@
 
 
 **Eselect-repository:**
-Wait for repo to roll out in eselect;
+``` # eselect repository enable overlay-of-FreshCrz  ```
 
 Manually:
 
@@ -15,3 +15,6 @@ sync-type = git
 sync-uri = https://github.com/Papagemabodi/overlay-of-FreshCrz.git
 priority = 50
 ```
+
+Syncing:
+``` # emerge --sync overlay-of-FreshCrz  ```
