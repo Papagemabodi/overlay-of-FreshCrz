@@ -30,7 +30,7 @@ HOMEPAGE="https://github.com/Papagemabodi/Papiroska"
 
 # Point to any required sources; these will be automatically downloaded by
 # Portage.
-SRC_URI="https://github.com/Papagemabodi/Papiroska/releases/download/Tests/${P}.tar.gz"
+SRC_URI="https://github.com/Papagemabodi/Papiroska/archive/refs/tags/v${PV}.tar.gz -> Papiroska-${PV}.tar.gz"
 
 # Source directory; the dir where the sources can be found (automatically
 # unpacked) inside ${WORKDIR}.  The default value for S is ${WORKDIR}/${P}
